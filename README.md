@@ -1,1 +1,134 @@
 # ai-workflow-framework
+
+Reusable artifact-driven AI workflow framework for repositories with staged workflows, manifests, templates, and install tooling.
+
+## What It Is
+
+`ai-workflow-framework` provides a structured, reusable process for AI-assisted software delivery inside source repositories.
+
+It standardizes how work moves through defined stages such as intake, design, implementation, commit, review, release, and operations by using:
+
+- stage-based workflow documents
+- deterministic artifact manifests
+- task and snapshot templates
+- starter scaffolding
+- install and sync tooling
+
+The goal is to make AI-assisted work more consistent, reviewable, and portable across projects.
+
+## Core Ideas
+
+This framework is built around a few core principles:
+
+- Artifacts over chat history: task state should be reconstructed from files, not conversation memory.
+- Stage ownership: each workflow stage owns specific artifacts and should only update its allowed outputs.
+- Deterministic context loading: each stage reads only the files declared by its manifest.
+- Portable process: the same workflow structure can be reused across multiple repositories.
+- Local task ownership: live task state stays in the consuming repository, not in the shared framework.
+
+## Repository Structure
+
+```text
+  framework/
+    workflows/
+    artifacts/
+      README.md
+      manifests/
+      templates/
+    starter/
+      artifacts/
+        current/
+          TaskBoard.current.md
+        tasks/
+          README.md
+
+scripts/
+  install-framework.ps1
+
+docs/
+  consuming-repo-layout.md
+```
+
+## What This Repository Contains
+
+- Shared workflow stage documents
+- Artifact contract documentation
+- Stage manifests
+- Reusable task templates
+- Starter task scaffolding
+- Installation and update tooling
+- Usage guidance for consuming repositories
+
+## What This Repository Does Not Contain
+
+This repository should not contain live task state for consuming projects.
+
+Keep these in each consuming repository:
+
+- `.ai/AGENT-RULES.md`
+- `.ai/artifacts/current/TaskBoard.current.md`
+- `.ai/artifacts/tasks/<task-id>/current/*`
+- `.ai/artifacts/tasks/<task-id>/logs/*`
+
+## Recommended Usage Model
+
+The preferred model is to use this repository as a shared framework source and copy or sync its reusable assets into each consuming repository.
+
+This avoids Git submodule friction while preserving a versioned source of truth.
+
+A submodule-based setup is possible, but it is usually best to keep only shared framework assets in the submodule and keep all live task state local to the consuming repository.
+
+## Installation
+
+Use the install script to copy the framework into a target repository:
+
+```powershell
+.\scripts\install-framework.ps1 -TargetRepoPath C:\src\MySolution
+```
+
+After installation:
+
+1. Update `.ai/AGENT-RULES.md` for the target repository.
+2. Create the first real task folder during stage 01 intake.
+3. Set the task as active in `TaskBoard.current.md`.
+4. Begin with the intake workflow.
+
+See [INSTALL.md](./INSTALL.md) for setup details.
+
+## Workflow Stages
+
+The framework defines a staged process:
+
+1. Intake and specification
+2. Discovery and design
+3. Implementation
+4. Branch and commit
+5. Quality and pull request
+6. Release and deploy
+7. Operate and improve
+
+Each stage has:
+
+- a workflow document
+- a manifest describing required inputs
+- explicit rules for allowed outputs
+
+## Why Use It
+
+This framework helps teams:
+
+- reduce ambiguity in AI-assisted work
+- keep task state explicit and auditable
+- improve handoff quality between stages
+- reuse a consistent workflow across repositories
+- avoid over-reliance on transient chat context
+
+## Documentation
+
+- [INSTALL.md](./INSTALL.md)
+- [USAGE.md](./USAGE.md)
+- [consuming-repo-layout.md](./docs/consuming-repo-layout.md)
+
+## License
+
+This template is set up for the `MIT` license.
