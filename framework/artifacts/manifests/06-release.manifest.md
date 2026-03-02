@@ -5,6 +5,7 @@
 - Stage ID: `06`
 - Owner: `Release Engineer`
 - Workflow: `.ai/workflows/06-release-and-deploy.md`
+- Scope: `Optional downstream extension after the core task delivery lifecycle`
 
 ## Required Inputs
 
@@ -40,6 +41,7 @@
 ## Entry Criteria
 
 - The quality gate is approved or explicitly accepted with risk.
+- The consuming repository has chosen to keep release/deploy work inside this framework.
 
 ## Exit Criteria
 

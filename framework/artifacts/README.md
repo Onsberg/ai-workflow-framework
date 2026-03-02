@@ -26,6 +26,7 @@ This folder defines the deterministic artifact contract for AI-assisted work in 
   tasks/
     <task-id>/
       current/
+        IssueImport.current.md
         TaskStatus.current.md
         Spec.current.md
         Architecture.current.md
@@ -47,8 +48,8 @@ This folder defines the deterministic artifact contract for AI-assisted work in 
 ### Global Snapshot
 
 - `current/TaskBoard.current.md`
-- Purpose: list planned tasks, show the active task, and point to task folders.
-- Scope: repository-wide queue and active-task pointer.
+- Purpose: provide a lightweight local summary of the current task context and an optional completion log.
+- Scope: current branch/worktree summary, not a repository-wide queue.
 - Update style: replace in full.
 
 ### Task Snapshots
@@ -57,6 +58,11 @@ This folder defines the deterministic artifact contract for AI-assisted work in 
 - Purpose: authoritative current state for one task.
 - Scope: one task only.
 - Update style: replace in full.
+
+Typical examples:
+
+- `IssueImport.current.md`: raw imported issue metadata, optional and usually created before stage 01.
+- `Spec.current.md`: implementation-ready specification produced by stage 01.
 
 ### Task Logs
 
@@ -67,10 +73,10 @@ This folder defines the deterministic artifact contract for AI-assisted work in 
 
 ## Ownership Model
 
-Snapshot artifacts use single-writer ownership. Only the owning stage may replace a snapshot artifact.
+Snapshot artifacts use single-writer ownership unless a specific artifact explicitly allows a later lifecycle append/update.
 
-- `TaskBoard.current.md`: Intake
-- `TaskStatus.current.md`: Intake
+- `TaskBoard.current.md`: Intake (for the local active-task summary) and Operate (for completed-task log updates)
+- `TaskStatus.current.md`: Intake (including task branch/worktree assignment and draft-to-planned promotion)
 - `Spec.current.md`: Intake
 - `Architecture.current.md`: Discovery and Design
 - `Plan.current.md`: Discovery and Design
@@ -91,18 +97,38 @@ Each stage must load:
 
 Do not load task logs by default. Load logs only when the manifest explicitly allows it and only the minimum needed section.
 
-## Task Lifecycle
+## Task Delivery Lifecycle
 
 Task workspaces are retained indefinitely.
 
 States:
 
-- `Planned`: listed in `TaskBoard.current.md`, task may exist with partial artifacts.
-- `Active`: the current task pointer references this task.
+- `Draft`: task shell exists and may include imported issue data, but stage 01 has not produced an implementation-ready spec yet.
+- `Planned`: stage 01 is complete, but the task is not currently being worked.
+- `Active`: the task is currently being worked in its branch/worktree.
+- `Paused`: work is intentionally deferred, but the task can be resumed immediately without waiting for an external blocker to clear. The task should retain its branch/worktree.
+- `On Hold`: work is intentionally deferred because a named blocker, dependency, or decision must be resolved before the task can continue.
 - `Completed`: implementation and quality work is complete; task snapshots are final unless reopened.
 - `Archived`: reserved for future use if compaction is introduced.
 
 Completed tasks are not deleted automatically.
+
+By default, the task delivery lifecycle is considered complete at the end of stage 05 when the task is merged to `main` or is otherwise approved and ready to merge.
+
+Stages 06 and 07 are optional downstream extensions for teams that intentionally track release, deployment, or operational follow-up inside the repository.
+
+Status decision rule:
+
+- Use `Paused` when the team could resume the task now but is choosing to work on something else.
+- Use `On Hold` when the team cannot proceed responsibly until a blocker is resolved.
+
+## Parallel Task Execution
+
+The preferred task-switching model is one task branch plus one git worktree per in-progress task.
+
+- Create or reuse a dedicated branch/worktree during stage 01 before the task becomes stage-02 ready.
+- Switch tasks by moving to the other task's worktree and updating the task status for that task.
+- Do not rely on anonymous `git stash` entries as the normal task-switch mechanism.
 
 ## Task IDs
 

@@ -12,17 +12,32 @@ The framework is stage-based. Each stage should:
 - read only the artifacts allowed by that manifest
 - write only the artifacts allowed by that manifest
 
-The intent is to keep task progress explicit, deterministic, and file-driven.
+The intent is to keep task progress explicit, deterministic, and file-driven across the task delivery lifecycle.
 
-## Workflow Stages
+Branching and commits follow the same model:
 
-Use the workflow stages in this order:
+- `Draft` tasks may be imported with raw issue data before stage 01
+- one task that is ready for stage 02 should already have one task branch and one git worktree
+- one completed plan subtask should normally map to one commit
+- externally created task branches/worktrees may be reused when they already isolate the active task
+- stage 03 keeps uncommitted work in the task worktree; stage 04 turns completed subtasks into commits
+
+## Core Lifecycle
+
+Use the core task delivery stages in this order:
 
 1. `01-intake-and-spec.md`
 2. `02-discovery-and-design.md`
 3. `03-implementation.md`
-4. `04-branch-and-commit.md`
+4. `04-commit.md`
 5. `05-quality-and-pr.md`
+
+For most teams, the workflow ends here when the task is merged to `main` or is otherwise approved and ready to merge.
+
+## Optional Extensions
+
+If a consuming repository intentionally keeps release and operational follow-up in repo-local artifacts, continue with:
+
 6. `06-release-and-deploy.md`
 7. `07-operate-and-improve.md`
 
@@ -32,10 +47,28 @@ Each stage has a matching manifest that defines what context it may read and wha
 
 1. Create a new folder at `.ai/artifacts/tasks/<task-id>/`
 2. Add `current/` and `logs/` beneath that folder
-3. Create the initial stage-01 snapshots from `.ai/artifacts/templates/`
-4. Update `.ai/artifacts/current/TaskBoard.current.md`
-5. Mark the task `Active`
-6. Begin with stage 01
+3. If the task comes from an external issue tool, create `current/IssueImport.current.md` from `.ai/artifacts/templates/IssueImport.template.md`
+4. Create the initial stage-01 snapshots from `.ai/artifacts/templates/`
+5. Begin with stage 01
+6. During stage 01, create or confirm the task branch and git worktree before the task advances to stage 02
+7. Optionally update `.ai/artifacts/current/TaskBoard.current.md` to mirror the local branch/worktree summary
+8. Move the task from `Draft` to `Planned` or `Active`
+
+## Switching Tasks
+
+The preferred task-switching model is `git worktree`, not `git stash`.
+
+- Leave each in-progress task on its own branch/worktree.
+- Switch tasks by moving to the other task's worktree and updating the relevant `TaskStatus.current.md`.
+- Mark a task `Paused` when work is parked by choice and can be resumed immediately.
+- Mark a task `On Hold` when an explicit blocker, dependency, or decision prevents further work.
+- Avoid anonymous stashes except as a short-lived emergency fallback.
+- A `Draft` task may already have a reserved branch, but it still cannot skip stage 01.
+
+Use this quick test:
+
+- If the task could resume right now, use `Paused`.
+- If the task cannot proceed until something else changes, use `On Hold`.
 
 ## Artifact Ownership
 
@@ -70,6 +103,8 @@ These files belong to each consuming repository and should not be treated as sha
 - `.ai/artifacts/tasks/<task-id>/current/*`
 - `.ai/artifacts/tasks/<task-id>/logs/*`
 
+`TaskBoard.current.md` is now only a lightweight local summary and completion log; `TaskStatus.current.md` is the authoritative task-state source.
+
 ## Common Mistakes
 
 - Treating task logs as reusable framework content
@@ -77,3 +112,6 @@ These files belong to each consuming repository and should not be treated as sha
 - Updating workflow docs without updating matching manifests
 - Replacing a `*.current.md` artifact from the wrong stage
 - Letting copied framework files drift without a documented update path
+- Mixing multiple active tasks on one branch
+- Switching tasks by stashing instead of using the task's dedicated worktree
+- Creating commits that span multiple unrelated subtasks

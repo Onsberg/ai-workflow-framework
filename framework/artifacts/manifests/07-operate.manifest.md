@@ -5,6 +5,7 @@
 - Stage ID: `07`
 - Owner: `SRE / Operations Engineer`
 - Workflow: `.ai/workflows/07-operate-and-improve.md`
+- Scope: `Optional downstream extension after the core task delivery lifecycle`
 
 ## Required Inputs
 
@@ -24,6 +25,7 @@
 
 - `tasks/<task-id>/current/Operations.current.md`
 - `tasks/<task-id>/current/TaskStatus.current.md`
+- `.ai/artifacts/current/TaskBoard.current.md`
 
 ## Allowed Log Outputs
 
@@ -37,14 +39,15 @@
 - `Plan.current.md`
 - `QualityGate.current.md`
 - `ReleasePlan.current.md`
-- `.ai/artifacts/current/TaskBoard.current.md`
 
 ## Entry Criteria
 
 - The task has been released, deployed, or otherwise observed in operation.
+- The consuming repository has chosen to keep operational follow-up inside this framework.
 
 ## Exit Criteria
 
 - Operational learnings are captured.
 - Improvement actions are explicit.
 - Task status reflects the operational state.
+- Completed tasks may be appended to `TaskBoard.current.md`.

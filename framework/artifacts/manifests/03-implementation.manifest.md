@@ -36,14 +36,18 @@
 
 - The task is active.
 - Design artifacts exist.
+- The task has a dedicated branch and git worktree recorded in `TaskStatus.current.md`.
+- The task is no longer in `Draft`.
 
 ## Exit Criteria
 
 - Code changes are implemented.
 - Tests are added or updated where relevant.
 - Verification results are recorded in the run history.
+- No final commit is required yet; the task remains ready for stage 04 on the same task branch/worktree.
 
 ## Notes
 
 - Implementation changes code, not design snapshots.
+- Implementation keeps uncommitted work in the task worktree until stage 04 commits it.
 - If implementation reveals a design gap, record it and route back to stage 02.

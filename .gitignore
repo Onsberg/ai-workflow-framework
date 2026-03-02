@@ -1,0 +1,27 @@
+# JetBrains IDEs (Rider, IntelliJ platform)
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Visual Studio
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.vcxproj.user
+*.psess
+*.vsp
+*.vspx
+
+# Visual Studio build and cache artifacts
+_ReSharper*/
+*.[Rr]e[Ss]harper
+*.DotSettings.user
+
+# Local Git helper files that should not be shared
+.git-credentials
+.gitconfig.local
+.gitmessage
+.gitreview

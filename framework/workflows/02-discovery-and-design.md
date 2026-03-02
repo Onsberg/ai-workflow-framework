@@ -47,6 +47,8 @@ List:
 - Files to modify
 - Files to create
 - Minimal change approach
+- Reviewable subtasks that can become separate commits in stage 04
+- The recommended commit boundary for each subtask
 
 ### Unknowns
 

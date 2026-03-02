@@ -4,17 +4,18 @@ Reusable artifact-driven AI workflow framework for repositories with staged work
 
 ## What It Is
 
-`ai-workflow-framework` provides a structured, reusable process for AI-assisted software delivery inside source repositories.
+`ai-workflow-framework` provides a structured, reusable process for an AI-assisted task delivery lifecycle inside source repositories.
 
-It standardizes how work moves through defined stages such as intake, design, implementation, commit, review, release, and operations by using:
+It standardizes how work moves through defined task-delivery stages such as intake, design, implementation, commit, and review, with optional downstream release/operations extensions, by using:
 
 - stage-based workflow documents
 - deterministic artifact manifests
 - task and snapshot templates
+- optional external issue-import scaffolding
 - starter scaffolding
 - install and sync tooling
 
-The goal is to make AI-assisted work more consistent, reviewable, and portable across projects.
+The goal is to make AI-assisted task delivery more consistent, reviewable, and portable across projects.
 
 ## Core Ideas
 
@@ -25,6 +26,7 @@ This framework is built around a few core principles:
 - Deterministic context loading: each stage reads only the files declared by its manifest.
 - Portable process: the same workflow structure can be reused across multiple repositories.
 - Local task ownership: live task state stays in the consuming repository, not in the shared framework.
+- Parallel task isolation: in-progress tasks should use dedicated git branches and worktrees.
 
 ## Repository Structure
 
@@ -90,20 +92,27 @@ After installation:
 
 1. Update `.ai/AGENT-RULES.md` for the target repository.
 2. Create the first real task folder during stage 01 intake.
-3. Set the task as active in `TaskBoard.current.md`.
+3. Set the task state in `TaskStatus.current.md` and optionally mirror it in `TaskBoard.current.md`.
 4. Begin with the intake workflow.
 
 See [INSTALL.md](./INSTALL.md) for setup details.
 
-## Workflow Stages
+## Task Delivery Lifecycle
 
-The framework defines a staged process:
+The framework defines a core task delivery lifecycle:
 
 1. Intake and specification
 2. Discovery and design
 3. Implementation
-4. Branch and commit
+4. Commit
 5. Quality and pull request
+
+For most teams, the framework's normal scope ends here when the task is merged to `main` or is otherwise approved and ready to merge.
+
+## Optional Downstream Extensions
+
+For repositories that intentionally keep release and operational follow-up inside repo-local artifacts, the framework also includes:
+
 6. Release and deploy
 7. Operate and improve
 
