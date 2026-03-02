@@ -33,10 +33,11 @@ Use this section to capture raw subtasks from the source system or an initial ta
 ## Task Routing
 
 - Proposed Branch: `feature/YYYYMMDD-short-slug` (`Optional`)
-- Proposed Worktree: `C:\path\to\repo-task` (`Optional`)
+- Proposed Worktree: `%LOCALAPPDATA%\ai-worktrees\repo-task` (`Optional`)
 
 ## Notes
 
 - This file is raw intake material from an external system.
 - It does not replace `Spec.current.md`.
 - If `Proposed Branch` is empty, stage 01 must create or assign the task branch before the task is stage-02 ready.
+- Use a path convention that is valid for the target environment; `%LOCALAPPDATA%` is the recommended Windows default.
