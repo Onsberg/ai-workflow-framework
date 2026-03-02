@@ -39,7 +39,7 @@
 ## Notes
 
 - Use this file to track status only.
-- `Draft` means the task was imported or created but has not yet completed stage 01 specification.
+- `Draft` means the task was created and may have a raw `Intake.current.md`, but stage 01 has not yet completed specification.
 - `Paused` means work is deferred by choice and could resume immediately.
 - `On Hold` means work is blocked until a named blocker, dependency, or decision is resolved.
 - Keep the branch/worktree assignment current when the task is activated, paused, or resumed.

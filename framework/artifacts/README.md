@@ -26,7 +26,7 @@ This folder defines the deterministic artifact contract for AI-assisted work in 
   tasks/
     <task-id>/
       current/
-        IssueImport.current.md
+        Intake.current.md
         TaskStatus.current.md
         Spec.current.md
         Architecture.current.md
@@ -61,7 +61,7 @@ This folder defines the deterministic artifact contract for AI-assisted work in 
 
 Typical examples:
 
-- `IssueImport.current.md`: raw imported issue metadata, optional and usually created before stage 01.
+- `Intake.current.md`: normalized raw intake record, created or updated during stage 01 for both chat-first and external-system intake.
 - `Spec.current.md`: implementation-ready specification produced by stage 01.
 
 ### Task Logs
@@ -103,7 +103,7 @@ Task workspaces are retained indefinitely.
 
 States:
 
-- `Draft`: task shell exists and may include imported issue data, but stage 01 has not produced an implementation-ready spec yet.
+- `Draft`: task shell exists and may include a raw intake record, but stage 01 has not produced an implementation-ready spec yet.
 - `Planned`: stage 01 is complete, but the task is not currently being worked.
 - `Active`: the task is currently being worked in its branch/worktree.
 - `Paused`: work is intentionally deferred, but the task can be resumed immediately without waiting for an external blocker to clear. The task should retain its branch/worktree.

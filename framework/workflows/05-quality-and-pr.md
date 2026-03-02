@@ -21,6 +21,14 @@ Out of Scope:
 
 ## Steps
 
+### Review Artifacts
+
+Before reviewing:
+
+- Verify `tasks/<task-id>/logs/` exists
+- Create `tasks/<task-id>/logs/ReviewResults.log.md` from `.ai/artifacts/templates/ReviewResults.template.md` if it does not already exist
+- Create `tasks/<task-id>/logs/RunHistory.log.md` from `.ai/artifacts/templates/RunHistory.template.md` if it does not already exist
+
 ### Code Quality
 
 Check:
@@ -76,6 +84,7 @@ Potential issues.
 
 Produce:
 
-- Review report
+- Review report written to `tasks/<task-id>/logs/ReviewResults.log.md`
 - Improved code if needed
 - Final PR description
+- A dated stage-05 entry appended to `tasks/<task-id>/logs/RunHistory.log.md`

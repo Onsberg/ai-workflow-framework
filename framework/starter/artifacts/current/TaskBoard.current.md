@@ -7,7 +7,7 @@
 - Task Folder: `None`
 - Task Branch: `None`
 - Task Worktree: `None`
-- Summary: `No active task. Rename and activate the scaffold task when ready.`
+- Summary: `No active task. Create a task during stage 01 intake when ready.`
 
 ## Completed Tasks
 
@@ -18,9 +18,8 @@ Use this section as the lightweight completion log for this branch/worktree cont
 
 ## Starter Notes
 
-- A scaffold task workspace is included at `.ai/artifacts/tasks/YYYYMMDD-your-first-task/`.
-- Rename that folder to a real task id before making it active.
-- When the task is ready, replace this file in full and point the active task to the renamed folder.
+- Create the first real task folder during stage 01 intake.
+- When the task is ready, replace this file in full and point the active task to that task folder.
 
 ## Rules
 
