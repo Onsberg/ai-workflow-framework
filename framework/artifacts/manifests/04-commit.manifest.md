@@ -1,10 +1,10 @@
-# Stage Manifest: Branch and Commit
+# Stage Manifest: Commit
 
 ## Stage
 
 - Stage ID: `04`
 - Owner: `Version Control Steward`
-- Workflow: `.ai/workflows/04-branch-and-commit.md`
+- Workflow: `.ai/workflows/04-commit.md`
 
 ## Required Inputs
 
@@ -37,4 +37,6 @@
 ## Exit Criteria
 
 - Commit metadata is recorded in the run history.
+- The working branch and git worktree are dedicated to the active task, whether created by the framework or reused from an external system.
 - The commit scope matches the approved plan.
+- Completed plan subtasks are reflected as one focused commit each unless a documented split was required.

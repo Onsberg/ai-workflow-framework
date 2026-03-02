@@ -6,7 +6,7 @@ Follow `.ai/artifacts/manifests/01-intake.manifest.md` and only read/write the a
 
 ## Goal
 
-Convert a raw task into a clear implementation-ready specification.
+Convert a raw task or imported issue into a clear implementation-ready specification and task workspace assignment.
 
 ## Role
 
@@ -16,6 +16,8 @@ Must Produce:
 - Problem statement
 - Acceptance criteria
 - Prioritized clarification questions
+- Task status updates for activation, pause, or on-hold transitions
+- A branch/worktree decision when the task becomes stage-02 ready
 Out of Scope:
 - Final technical design
 - Code changes
@@ -30,6 +32,7 @@ Identify:
 - Scope
 - Constraints
 - Unknowns
+- Any raw issue details from `IssueImport.current.md`
 
 2 Write Specification
 
@@ -67,6 +70,17 @@ Potential failure scenarios.
 
 Explicit non-goals.
 
+3 Assign Task Execution Context
+
+When the task is being activated or resumed:
+
+- If `IssueImport.current.md` includes a proposed branch/worktree, validate and reuse it when it cleanly isolates the task
+- If no branch is present in `IssueImport.current.md` or no branch exists yet, create or assign a dedicated task branch and git worktree before the task is stage-02 ready
+- Reuse an externally created task branch/worktree when it already isolates the task cleanly
+- Record the task branch and task worktree in `TaskStatus.current.md`
+- Optionally mirror the active task summary in `TaskBoard.current.md` for the current branch/worktree
+- Promote the task from `Draft` to `Planned` or `Active` only after the specification is clear and task routing is assigned
+
 ## Output
 
-Produce a structured specification.
+Produce a structured specification and updated task routing state.

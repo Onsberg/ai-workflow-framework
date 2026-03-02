@@ -9,6 +9,7 @@ Each task folder should contain:
 ```text
 <task-id>/
   current/
+    IssueImport.current.md
     TaskStatus.current.md
     Spec.current.md
     Architecture.current.md
@@ -28,5 +29,6 @@ Each task folder should contain:
 - `current/` holds the latest authoritative state for that task.
 - `logs/` is append-only history for that task.
 - Create only the artifacts needed for the current lifecycle stage.
+- `IssueImport.current.md` is optional and is used for raw imported issue data before stage 01 completes.
 - Use the templates in `.ai/artifacts/templates/` when creating new snapshot artifacts.
 - A starter scaffold is included at `.ai/artifacts/tasks/YYYYMMDD-your-first-task/`; rename it before use.

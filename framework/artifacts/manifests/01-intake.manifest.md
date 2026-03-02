@@ -15,6 +15,7 @@
 
 - User request
 - Relevant existing task folder if the task is being resumed
+- `tasks/<task-id>/current/IssueImport.current.md`
 
 ## Allowed Snapshot Outputs
 
@@ -36,11 +37,12 @@
 
 ## Entry Criteria
 
-- A new request exists, or an existing task needs scope clarification.
+- A new request exists, an imported draft task exists, or an existing task needs scope clarification, activation, pause, resume, or on-hold routing.
 
 ## Exit Criteria
 
-- The task is listed on the task board.
 - The task has a `TaskStatus.current.md`.
 - The task has a clear `Spec.current.md`.
 - Open questions are explicit.
+- Tasks that are ready for stage 02 have a recorded task branch and git worktree.
+- `TaskBoard.current.md` may be updated to mirror the current branch/worktree summary.

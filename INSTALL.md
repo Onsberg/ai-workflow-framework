@@ -60,7 +60,7 @@ After installation:
 1. Update `.ai/AGENT-RULES.md` with repository-specific stack, build, test, and coding rules.
 2. Start with `01-intake-and-spec.md`.
 
-Example prompt to begin stage 01 intake:
+Example prompt to begin the core task delivery lifecycle:
 
 ```text
 Run stage 01 intake for a new task.
@@ -71,7 +71,7 @@ Create a new task for: <short task summary>
 
 Create the task folder under `.ai/artifacts/tasks/<YYYYMMDD-short-slug>/`.
 Initialize the required stage-01 artifacts from the templates.
-Update `.ai/artifacts/current/TaskBoard.current.md` to make it the active task.
+Update `TaskStatus.current.md` to make it active and optionally mirror that in `.ai/artifacts/current/TaskBoard.current.md`.
 Do not start design yet.
 ```
 

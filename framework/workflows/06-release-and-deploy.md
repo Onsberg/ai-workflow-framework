@@ -4,6 +4,8 @@ Follow AGENT-RULES.md.
 
 Follow `.ai/artifacts/manifests/06-release.manifest.md` and only read/write the artifacts allowed by that manifest.
 
+This is an optional downstream extension. Use it only when the consuming repository intentionally keeps release and deployment planning inside repo-local task artifacts.
+
 ## Goal
 
 Prepare a safe release.
