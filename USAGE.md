@@ -16,7 +16,7 @@ The intent is to keep task progress explicit, deterministic, and file-driven acr
 
 Branching and commits follow the same model:
 
-- `Draft` tasks may be imported with raw issue data before stage 01
+- `Draft` tasks may begin with a raw intake record before stage 01 is complete
 - one task that is ready for stage 02 should already have one task branch and one git worktree
 - one completed plan subtask should normally map to one commit
 - externally created task branches/worktrees may be reused when they already isolate the active task
@@ -45,14 +45,98 @@ Each stage has a matching manifest that defines what context it may read and wha
 
 ## Starting A New Task
 
-1. Create a new folder at `.ai/artifacts/tasks/<task-id>/`
-2. Add `current/` and `logs/` beneath that folder
-3. If the task comes from an external issue tool, create `current/IssueImport.current.md` from `.ai/artifacts/templates/IssueImport.template.md`
-4. Create the initial stage-01 snapshots from `.ai/artifacts/templates/`
-5. Begin with stage 01
-6. During stage 01, create or confirm the task branch and git worktree before the task advances to stage 02
-7. Optionally update `.ai/artifacts/current/TaskBoard.current.md` to mirror the local branch/worktree summary
-8. Move the task from `Draft` to `Planned` or `Active`
+Start with stage 01 and let the intake agent create the task workspace and normalize the raw request into `Intake.current.md`.
+
+For chat-first intake:
+
+1. Start on `main` and ask the agent to run stage 01 intake for a new task.
+2. Provide the task goal, relevant constraints, and any known acceptance expectations.
+3. Let the intake agent create the task folder, `Intake.current.md`, and `RunHistory.log.md` first.
+4. Answer any blocking clarification questions the agent asks.
+5. Let stage 01 finalize the remaining stage-01 artifacts, including `Spec.current.md`, `TaskStatus.current.md`, and task routing.
+
+For existing raw intake:
+
+1. Start with the existing task folder or existing raw intake details.
+2. Ask the agent to run stage 01 intake and validate `Intake.current.md`.
+3. Answer any blocking clarification questions the agent asks.
+4. Let stage 01 finalize `Spec.current.md`, `TaskStatus.current.md`, and task routing.
+
+The user should not manually scaffold task folders or stage-01 artifacts as a normal operating step.
+
+### Intake Completeness Rules
+
+Required to create `Intake.current.md`:
+
+- A provisional task title
+- The raw request text or a faithful summary
+- The source channel
+- The capture date
+
+Required to complete stage 01:
+
+- A stable task summary suitable for task id creation
+- A clear goal
+- Scope boundaries or explicit scope uncertainty
+- Acceptance criteria that are materially sufficient for planning, or explicit acceptance gaps
+- Known constraints and dependencies, or an explicit `None known`
+- Enough routing information to assign branch/worktree now or keep the task in `Draft` for a named reason
+
+Optional but useful:
+
+- Priority
+- Labels
+- Initial task breakdown
+- External ID and source URL
+- Proposed branch and worktree
+- Implementation hints from the user
+
+Fields may be unknown, but they should not be silently omitted. Use `TBD`, `Unknown`, `None`, or `Known Unknowns` instead.
+
+### Chat Intake Examples
+
+Example 1:
+
+```text
+Run stage 01 intake for a new task.
+
+Use `.ai/AGENT-RULES.md`, `.ai/workflows/01-intake-and-spec.md`, and `.ai/artifacts/manifests/01-intake.manifest.md`.
+
+Create a task for: add CSV export to the customer list page.
+
+Known constraints:
+- Reuse the existing export service if possible.
+- Do not change the API contract unless necessary.
+
+Desired outcome:
+- Users can export the currently filtered customer list to CSV from the UI.
+
+If required information is missing, create `Intake.current.md`, record what is known, and ask me the blocking questions before finalizing the spec.
+```
+
+Example 2:
+
+```text
+Run stage 01 intake for a new task from chat.
+
+Create a normalized `Intake.current.md` first, then verify it for missing or ambiguous information.
+
+Task request:
+- We need to reduce login failures after the recent auth changes.
+- I suspect the issue is around token refresh timing.
+- I do not yet know whether this will need frontend, backend, or both.
+
+Ask me the minimum blocking questions needed before you finalize `Spec.current.md` or assign task routing.
+```
+
+Example 3:
+
+```text
+Run stage 01 intake for an externally sourced task.
+
+Use the existing task folder and create or update `Intake.current.md` from the imported tracker details.
+Validate the intake record, ask me any blocking questions, then finish the normal stage-01 intake flow.
+```
 
 ## Switching Tasks
 

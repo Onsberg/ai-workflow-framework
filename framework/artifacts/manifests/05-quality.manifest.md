@@ -45,6 +45,8 @@
 
 ## Exit Criteria
 
-- Findings are recorded.
+- Findings are recorded in `ReviewResults.log.md`.
 - Quality gate status is explicit.
+- `ReviewResults.log.md` exists for the task.
+- `RunHistory.log.md` includes a stage-05 entry for the current run.
 - Task status reflects the review outcome.

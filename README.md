@@ -11,7 +11,7 @@ It standardizes how work moves through defined task-delivery stages such as inta
 - stage-based workflow documents
 - deterministic artifact manifests
 - task and snapshot templates
-- optional external issue-import scaffolding
+- normalized intake scaffolding for chat-first and external-system requests
 - starter scaffolding
 - install and sync tooling
 
@@ -91,9 +91,9 @@ Use the install script to copy the framework into a target repository:
 After installation:
 
 1. Update `.ai/AGENT-RULES.md` for the target repository.
-2. Create the first real task folder during stage 01 intake.
-3. Set the task state in `TaskStatus.current.md` and optionally mirror it in `TaskBoard.current.md`.
-4. Begin with the intake workflow.
+2. Start stage 01 intake from chat or from an existing raw intake record.
+3. Let stage 01 create the task workspace and normalize the intake details.
+4. Continue through the intake workflow.
 
 See [INSTALL.md](./INSTALL.md) for setup details.
 

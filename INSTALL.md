@@ -79,9 +79,9 @@ Use `.ai/AGENT-RULES.md`, `.ai/workflows/01-intake-and-spec.md`, and `.ai/artifa
 
 Create a new task for: <short task summary>
 
-Create the task folder under `.ai/artifacts/tasks/<YYYYMMDD-short-slug>/`.
-Initialize the required stage-01 artifacts from the templates.
-Update `TaskStatus.current.md` to make it active and optionally mirror that in `.ai/artifacts/current/TaskBoard.current.md`.
+Create or update a normalized `Intake.current.md` first.
+If information is missing, ask the blocking clarification questions before finalizing the spec.
+Then complete the normal stage-01 intake flow, including task routing.
 Do not start design yet.
 ```
 
