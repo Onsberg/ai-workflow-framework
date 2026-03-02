@@ -37,8 +37,10 @@ The installer will:
 
 - copy shared workflow files into the target repository
 - copy artifact manifests and templates
-- create a clean starter `TaskBoard.current.md`
-- create a placeholder `.ai/AGENT-RULES.md` if the target repository does not have one
+- create a clean starter `TaskBoard.current.md` only if one does not already exist
+- create a placeholder `.ai/AGENT-RULES.md` only if the target repository does not have one
+- leave existing task folders under `.ai/artifacts/tasks/` unchanged
+- preserve existing local state files instead of resetting them during updates
 
 ## Manual Install
 
@@ -52,6 +54,14 @@ If you do not want to use the script, copy these paths into the target repositor
 6. `framework/starter/artifacts/tasks/README.md` to `.ai/artifacts/tasks/README.md`
 
 Then create or adapt `.ai/AGENT-RULES.md` for the consuming repository.
+
+When updating an existing consuming repository, do not overwrite:
+
+1. `.ai/AGENT-RULES.md`
+2. `.ai/artifacts/current/TaskBoard.current.md`
+3. `.ai/artifacts/tasks/<task-id>/`
+
+These are local state and should be preserved.
 
 ## First-Time Setup In The Target Repository
 
