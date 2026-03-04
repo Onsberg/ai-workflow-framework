@@ -10,7 +10,6 @@
 ## Required Inputs
 
 - `.ai/AGENT-RULES.md`
-- `.ai/artifacts/current/TaskBoard.current.md`
 - `tasks/<task-id>/current/TaskStatus.current.md`
 - `tasks/<task-id>/current/Spec.current.md`
 
@@ -25,7 +24,6 @@
 
 - `tasks/<task-id>/current/Operations.current.md`
 - `tasks/<task-id>/current/TaskStatus.current.md`
-- `.ai/artifacts/current/TaskBoard.current.md`
 
 ## Allowed Log Outputs
 
@@ -50,4 +48,3 @@
 - Operational learnings are captured.
 - Improvement actions are explicit.
 - Task status reflects the operational state.
-- Completed tasks may be appended to `TaskBoard.current.md`.

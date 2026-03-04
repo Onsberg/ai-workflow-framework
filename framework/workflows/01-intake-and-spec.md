@@ -159,7 +159,6 @@ When the task is being activated or resumed:
 - If no branch is present in `Intake.current.md` or no branch exists yet, create or assign a dedicated task branch and git worktree before the task is stage-02 ready
 - Reuse an externally created task branch/worktree when it already isolates the task cleanly
 - Record the task branch and task worktree in `TaskStatus.current.md`
-- Optionally mirror the active task summary in `TaskBoard.current.md` for the current branch/worktree
 - Promote the task from `Draft` to `Planned` or `Active` only after the specification is clear and task routing is assigned
 
 ## Output

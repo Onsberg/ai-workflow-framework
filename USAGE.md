@@ -183,11 +183,8 @@ When the shared framework repository changes:
 These files belong to each consuming repository and should not be treated as shared framework assets:
 
 - `.ai/AGENT-RULES.md`
-- `.ai/artifacts/current/TaskBoard.current.md`
 - `.ai/artifacts/tasks/<task-id>/current/*`
 - `.ai/artifacts/tasks/<task-id>/logs/*`
-
-`TaskBoard.current.md` is now only a lightweight local summary and completion log; `TaskStatus.current.md` is the authoritative task-state source.
 
 ## Common Mistakes
 

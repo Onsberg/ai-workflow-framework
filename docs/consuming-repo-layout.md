@@ -9,8 +9,6 @@ Use this layout in repositories that consume the framework.
     workflows/
     artifacts/
       README.md
-      current/
-        TaskBoard.current.md
       manifests/
       tasks/
         README.md
@@ -33,7 +31,6 @@ Shared from framework repo:
 Owned by consuming repo:
 
 - `AGENT-RULES.md`
-- `artifacts/current/TaskBoard.current.md`
 - `artifacts/tasks/`
 
 This split keeps reusable process assets versioned centrally while preserving repository-specific state locally.

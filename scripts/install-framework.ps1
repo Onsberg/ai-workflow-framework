@@ -31,19 +31,17 @@ if (-not (Test-Path $targetAiRoot)) {
 }
 
 $targetArtifactsRoot = Join-Path $targetAiRoot "artifacts"
-$targetCurrentRoot = Join-Path $targetArtifactsRoot "current"
 $targetManifestsRoot = Join-Path $targetArtifactsRoot "manifests"
 $targetTasksRoot = Join-Path $targetArtifactsRoot "tasks"
 $targetTemplatesRoot = Join-Path $targetArtifactsRoot "templates"
 $targetWorkflowsRoot = Join-Path $targetAiRoot "workflows"
 
-New-Item -ItemType Directory -Force -Path $targetArtifactsRoot, $targetCurrentRoot, $targetManifestsRoot, $targetTasksRoot, $targetTemplatesRoot, $targetWorkflowsRoot | Out-Null
+New-Item -ItemType Directory -Force -Path $targetArtifactsRoot, $targetManifestsRoot, $targetTasksRoot, $targetTemplatesRoot, $targetWorkflowsRoot | Out-Null
 
 Copy-Item (Join-Path $sourceRoot "workflows\\*") $targetWorkflowsRoot -Recurse -Force
 Copy-Item (Join-Path $sourceRoot "artifacts\\README.md") (Join-Path $targetArtifactsRoot "README.md") -Force
 Copy-Item (Join-Path $sourceRoot "artifacts\\manifests\\*") $targetManifestsRoot -Recurse -Force
 Copy-Item (Join-Path $sourceRoot "artifacts\\templates\\*") $targetTemplatesRoot -Recurse -Force
-Copy-IfMissing (Join-Path $sourceRoot "starter\\artifacts\\current\\TaskBoard.current.md") (Join-Path $targetCurrentRoot "TaskBoard.current.md")
 Copy-IfMissing (Join-Path $sourceRoot "starter\\artifacts\\tasks\\README.md") (Join-Path $targetTasksRoot "README.md")
 
 $agentRulesPath = Join-Path $targetAiRoot "AGENT-RULES.md"
@@ -64,4 +62,4 @@ Include:
 
 Write-Host "AI workflow framework installed into $targetAiRoot"
 Write-Host "Shared workflows, manifests, templates, and framework docs were synced."
-Write-Host "Existing AGENT-RULES.md, TaskBoard.current.md, tasks/README.md, and task folders under .ai/artifacts/tasks/ were preserved."
+Write-Host "Existing AGENT-RULES.md, tasks/README.md, and task folders under .ai/artifacts/tasks/ were preserved."

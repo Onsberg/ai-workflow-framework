@@ -18,8 +18,6 @@ After installation, the consuming repository should contain:
   workflows/
   artifacts/
     README.md
-    current/
-      TaskBoard.current.md
     manifests/
     tasks/
     templates/
@@ -37,7 +35,6 @@ The installer will:
 
 - copy shared workflow files into the target repository
 - copy artifact manifests and templates
-- create a clean starter `TaskBoard.current.md` only if one does not already exist
 - create a placeholder `.ai/AGENT-RULES.md` only if the target repository does not have one
 - leave existing task folders under `.ai/artifacts/tasks/` unchanged
 - preserve existing local state files instead of resetting them during updates
@@ -50,16 +47,14 @@ If you do not want to use the script, copy these paths into the target repositor
 2. `framework/artifacts/README.md` to `.ai/artifacts/README.md`
 3. `framework/artifacts/manifests/` to `.ai/artifacts/manifests/`
 4. `framework/artifacts/templates/` to `.ai/artifacts/templates/`
-5. `framework/starter/artifacts/current/TaskBoard.current.md` to `.ai/artifacts/current/TaskBoard.current.md`
-6. `framework/starter/artifacts/tasks/README.md` to `.ai/artifacts/tasks/README.md`
+5. `framework/starter/artifacts/tasks/README.md` to `.ai/artifacts/tasks/README.md`
 
 Then create or adapt `.ai/AGENT-RULES.md` for the consuming repository.
 
 When updating an existing consuming repository, do not overwrite:
 
 1. `.ai/AGENT-RULES.md`
-2. `.ai/artifacts/current/TaskBoard.current.md`
-3. `.ai/artifacts/tasks/<task-id>/`
+2. `.ai/artifacts/tasks/<task-id>/`
 
 These are local state and should be preserved.
 
@@ -92,7 +87,6 @@ If your team prefers a submodule model, add this repository as a submodule at `.
 If you do that, keep these files local to the consuming repository:
 
 - `.ai/AGENT-RULES.md`
-- `.ai/artifacts/current/TaskBoard.current.md`
 - `.ai/artifacts/tasks/`
 
 Only the shared framework assets should come from the submodule.

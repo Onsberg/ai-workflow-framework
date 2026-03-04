@@ -9,7 +9,6 @@
 ## Required Inputs
 
 - `.ai/AGENT-RULES.md`
-- `.ai/artifacts/current/TaskBoard.current.md`
 
 ## Optional Inputs
 
@@ -22,7 +21,6 @@
 - `tasks/<task-id>/current/Intake.current.md`
 - `tasks/<task-id>/current/TaskStatus.current.md`
 - `tasks/<task-id>/current/Spec.current.md`
-- `.ai/artifacts/current/TaskBoard.current.md`
 
 ## Allowed Log Outputs
 
@@ -50,4 +48,3 @@
 - `RunHistory.log.md` exists and includes a stage-01 entry for the current run.
 - Open questions are explicit.
 - Tasks that are ready for stage 02 have a recorded task branch and git worktree.
-- `TaskBoard.current.md` may be updated to mirror the current branch/worktree summary.
