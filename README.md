@@ -39,8 +39,6 @@ This framework is built around a few core principles:
       templates/
     starter/
       artifacts/
-        current/
-          TaskBoard.current.md
         tasks/
           README.md
 
@@ -68,7 +66,6 @@ This repository should not contain live task state for consuming projects.
 Keep these in each consuming repository:
 
 - `.ai/AGENT-RULES.md`
-- `.ai/artifacts/current/TaskBoard.current.md`
 - `.ai/artifacts/tasks/<task-id>/current/*`
 - `.ai/artifacts/tasks/<task-id>/logs/*`
 

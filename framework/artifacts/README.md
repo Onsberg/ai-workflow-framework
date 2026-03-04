@@ -13,8 +13,6 @@ This folder defines the deterministic artifact contract for AI-assisted work in 
 
 ```text
 .ai/artifacts/
-  current/
-    TaskBoard.current.md
   manifests/
     01-intake.manifest.md
     02-design.manifest.md
@@ -45,13 +43,6 @@ This folder defines the deterministic artifact contract for AI-assisted work in 
 
 ## Artifact Types
 
-### Global Snapshot
-
-- `current/TaskBoard.current.md`
-- Purpose: provide a lightweight local summary of the current task context and an optional completion log.
-- Scope: current branch/worktree summary, not a repository-wide queue.
-- Update style: replace in full.
-
 ### Task Snapshots
 
 - `tasks/<task-id>/current/*.current.md`
@@ -75,7 +66,6 @@ Typical examples:
 
 Snapshot artifacts use single-writer ownership unless a specific artifact explicitly allows a later lifecycle append/update.
 
-- `TaskBoard.current.md`: Intake (for the local active-task summary) and Operate (for completed-task log updates)
 - `TaskStatus.current.md`: Intake (including task branch/worktree assignment and draft-to-planned promotion)
 - `Spec.current.md`: Intake
 - `Architecture.current.md`: Discovery and Design

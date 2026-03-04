@@ -9,7 +9,6 @@
 ## Required Inputs
 
 - `.ai/AGENT-RULES.md`
-- `.ai/artifacts/current/TaskBoard.current.md`
 - `tasks/<task-id>/current/TaskStatus.current.md`
 - `tasks/<task-id>/current/Spec.current.md`
 
@@ -34,7 +33,6 @@
 - `QualityGate.current.md`
 - `ReleasePlan.current.md`
 - `Operations.current.md`
-- `.ai/artifacts/current/TaskBoard.current.md`
 
 ## Entry Criteria
 

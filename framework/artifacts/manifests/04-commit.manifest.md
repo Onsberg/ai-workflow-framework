@@ -9,7 +9,6 @@
 ## Required Inputs
 
 - `.ai/AGENT-RULES.md`
-- `.ai/artifacts/current/TaskBoard.current.md`
 - `tasks/<task-id>/current/TaskStatus.current.md`
 - `tasks/<task-id>/current/Spec.current.md`
 - `tasks/<task-id>/current/Plan.current.md`
